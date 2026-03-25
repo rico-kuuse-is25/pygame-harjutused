@@ -1,3 +1,5 @@
+# Rico Kuuse
+
 import pygame
 import sys
 
