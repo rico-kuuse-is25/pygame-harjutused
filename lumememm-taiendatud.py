@@ -1,87 +1,65 @@
-import pygame
-import sys
-import math
+import pygame, sys
 
 pygame.init()
 
-# Akna seaded
-LAIUS = 300
-KORGUS = 300
-screen = pygame.display.set_mode((LAIUS, KORGUS))
-pygame.display.set_caption("Lumememm - Rico Kuuse")
+screen = pygame.display.set_mode([300, 300])
+pygame.display.set_caption("Täiendatud Lumemees - [Sinu Nimi]")
 
-# Värvid
-HELESININE = (173, 216, 230)
-VALGE = (255, 255, 255)
-MUST = (0, 0, 0)
-PUNANE = (255, 0, 0)
-PRUUN = (139, 69, 19)
-KOLLANE = (255, 255, 0)
-HALL = (120, 120, 120)
+while True:
+    # 4. Taustaks helesinine
+    screen.fill((173, 216, 230))
 
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+    # 6. Päike koos kiirtega (vasakul üleval)
+    pygame.draw.circle(screen, (255, 255, 0), (40, 40), 20) # Päikese keha
+    pygame.draw.line(screen, (255, 255, 0), (40, 10), (40, 70), 2) # Vertikaalne kiir
+    pygame.draw.line(screen, (255, 255, 0), (10, 40), (70, 40), 2) # Horisontaalne kiir
+    pygame.draw.line(screen, (255, 255, 0), (20, 20), (60, 60), 2) # Diagonaal
+    pygame.draw.line(screen, (255, 255, 0), (60, 20), (20, 60), 2) # Diagonaal
 
-    # Taust
-    screen.fill(HELESININE)
+    # 7. 3 Pilve (teeme need valgetest kattuvatest ringidest)
+    # Esimene pilv
+    pygame.draw.circle(screen, (255, 255, 255), (220, 40), 15)
+    pygame.draw.circle(screen, (255, 255, 255), (240, 35), 20)
+    pygame.draw.circle(screen, (255, 255, 255), (260, 40), 15)
+    # Teine pilv
+    pygame.draw.circle(screen, (255, 255, 255), (100, 60), 12)
+    pygame.draw.circle(screen, (255, 255, 255), (115, 55), 15)
+    pygame.draw.circle(screen, (255, 255, 255), (130, 60), 12)
+    # Kolmas pilv
+    pygame.draw.circle(screen, (255, 255, 255), (250, 90), 10)
+    pygame.draw.circle(screen, (255, 255, 255), (265, 85), 15)
+    pygame.draw.circle(screen, (255, 255, 255), (280, 90), 10)
 
-    # Päike
-    pygame.draw.circle(screen, KOLLANE, (250, 50), 20)
-    for angle in range(0, 360, 30):
-        x1 = 250 + int(math.cos(math.radians(angle)) * 25)
-        y1 = 50 + int(math.sin(math.radians(angle)) * 25)
-        x2 = 250 + int(math.cos(math.radians(angle)) * 38)
-        y2 = 50 + int(math.sin(math.radians(angle)) * 38)
-        pygame.draw.line(screen, KOLLANE, (x1, y1), (x2, y2), 2)
+    # Lumememme keha (nihutatud natuke alla, et asjad mahuks)
+    pygame.draw.circle(screen, (255, 255, 255), (150, 250), 50) # Alumine
+    pygame.draw.circle(screen, (255, 255, 255), (150, 170), 40) # Keskmine
+    pygame.draw.circle(screen, (255, 255, 255), (150, 110), 30) # Pea
 
-    # Pilved
-    pygame.draw.circle(screen, VALGE, (45, 45), 15)
-    pygame.draw.circle(screen, VALGE, (60, 35), 18)
-    pygame.draw.circle(screen, VALGE, (75, 45), 15)
+    # 1. Käed (pruunid jooned keskelt välja)
+    pygame.draw.line(screen, (139, 69, 19), (115, 170), (70, 150), 4) # Vasak käsi
+    pygame.draw.line(screen, (139, 69, 19), (185, 170), (230, 150), 4) # Parem käsi
 
-    pygame.draw.circle(screen, VALGE, (120, 60), 14)
-    pygame.draw.circle(screen, VALGE, (135, 50), 17)
-    pygame.draw.circle(screen, VALGE, (150, 60), 14)
+    # 5. Kätte hari (joonistame vasakusse kätte)
+    pygame.draw.line(screen, (139, 69, 19), (70, 100), (70, 200), 3) # Harja vars
+    pygame.draw.polygon(screen, (210, 180, 140), [(65, 200), (75, 200), (85, 230), (55, 230)]) # Harjased
 
-    pygame.draw.circle(screen, VALGE, (190, 95), 13)
-    pygame.draw.circle(screen, VALGE, (205, 85), 16)
-    pygame.draw.circle(screen, VALGE, (220, 95), 13)
+    # 2. Nööbid (3 tk keskmisele pallile)
+    pygame.draw.circle(screen, (0, 0, 0), (150, 150), 4)
+    pygame.draw.circle(screen, (0, 0, 0), (150, 170), 4)
+    pygame.draw.circle(screen, (0, 0, 0), (150, 190), 4)
 
-    # Lumememme keha
-    pygame.draw.circle(screen, VALGE, (150, 235), 45)  # alumine
-    pygame.draw.circle(screen, VALGE, (150, 165), 33)  # keskmine
-    pygame.draw.circle(screen, VALGE, (150, 110), 24)  # pea
+    # Silmad ja nina
+    pygame.draw.circle(screen, (0, 0, 0), (140, 105), 4)
+    pygame.draw.circle(screen, (0, 0, 0), (160, 105), 4)
+    pygame.draw.polygon(screen, (255, 0, 0), [(145, 115), (155, 115), (150, 125)])
 
-    # Silmad
-    pygame.draw.circle(screen, MUST, (142, 104), 3)
-    pygame.draw.circle(screen, MUST, (158, 104), 3)
-
-    # Nina
-    pygame.draw.polygon(screen, PUNANE, [(150, 110), (150, 122), (162, 116)])
-
-    # Nööbid
-    pygame.draw.circle(screen, MUST, (150, 155), 3)
-    pygame.draw.circle(screen, MUST, (150, 168), 3)
-    pygame.draw.circle(screen, MUST, (150, 181), 3)
-
-    # Käed
-    pygame.draw.line(screen, PRUUN, (123, 160), (90, 145), 3)
-    pygame.draw.line(screen, PRUUN, (177, 160), (210, 145), 3)
-
-    # Hari paremas käes
-    pygame.draw.line(screen, PRUUN, (210, 145), (235, 120), 3)
-    pygame.draw.line(screen, HALL, (235, 120), (245, 110), 2)
-    pygame.draw.line(screen, HALL, (235, 120), (248, 120), 2)
-    pygame.draw.line(screen, HALL, (235, 120), (245, 130), 2)
-
-    # Kübar
-    pygame.draw.rect(screen, MUST, (135, 72, 30, 20))
-    pygame.draw.rect(screen, MUST, (128, 88, 44, 5))
+    # 3. Kübar/müts (kaks musta ristkülikut)
+    pygame.draw.rect(screen, (30, 30, 30), [125, 75, 50, 10]) # Mütsi äär
+    pygame.draw.rect(screen, (30, 30, 30), [135, 45, 30, 30]) # Mütsi ülemine osa
 
     pygame.display.flip()
 
-pygame.quit()
-sys.exit()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()

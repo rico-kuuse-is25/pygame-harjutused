@@ -1,44 +1,35 @@
-# Rico Kuuse
+import pygame, sys  # Impordime pygame ja sys moodulid
 
-import pygame
-import sys
+pygame.init()  # Käivitame pygame'i
 
-pygame.init()
+# Tekitame uue akna suurusega 300x300 pikslit
+screen = pygame.display.set_mode([300, 300])
 
-# Akna seaded
-laius = 300
-korgus = 300
-screen = pygame.display.set_mode((laius, korgus))
-pygame.display.set_caption("Lumememm - Rico Kuuse")
+# Lisame aknale pealkirja oma nimega
+pygame.display.set_caption("Lumemees - [Sinu Nimi]")
 
-# Värvid
-MUST = (0, 0, 0)
-VALGE = (255, 255, 255)
-PUNANE = (255, 0, 0)
+# Lõpmatu tsükkel, mis hoiab akent lahti
+while True:
+    screen.fill((0, 0, 0))  # Täidame tausta musta värviga (RGB: 0, 0, 0)
 
-# Peamine programmitsükkel
-running = True
-while running:
+    # Joonistame lumememme keha (kolm valget ringi)
+    # pygame.draw.circle(aken, värv, keskpunkt_x_y, raadius)
+    pygame.draw.circle(screen, (255, 255, 255), (150, 220), 50)  # Alumine suur pall
+    pygame.draw.circle(screen, (255, 255, 255), (150, 140), 40)  # Keskmine pall
+    pygame.draw.circle(screen, (255, 255, 255), (150, 80), 30)   # Ülemine pall (pea)
+
+    # Joonistame lumememmele silmad (kaks väikest musta ringi)
+    pygame.draw.circle(screen, (0, 0, 0), (140, 75), 4)  # Vasak silm
+    pygame.draw.circle(screen, (0, 0, 0), (160, 75), 4)  # Parem silm
+
+    # Joonistame lumememmele nina (punane kolmnurk polygoniga)
+    # pygame.draw.polygon(aken, värv, punktide_koordinaadid)
+    pygame.draw.polygon(screen, (255, 0, 0), [(145, 85), (155, 85), (150, 95)])
+
+    pygame.display.flip()  # Värskendame ekraani, et joonistused nähtavale ilmuks
+
+    # Kontrollime sündmusi (nt kas kasutaja vajutas sulgemise risti)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            running = False
-
-    # Taust
-    screen.fill(MUST)
-
-    # Lumememme keha
-    pygame.draw.circle(screen, VALGE, (150, 230), 55)  # alumine
-    pygame.draw.circle(screen, VALGE, (150, 150), 40)  # keskmine
-    pygame.draw.circle(screen, VALGE, (150, 85), 28)   # pea
-
-    # Silmad
-    pygame.draw.circle(screen, MUST, (140, 78), 4)
-    pygame.draw.circle(screen, MUST, (160, 78), 4)
-
-    # Nina
-    pygame.draw.polygon(screen, PUNANE, [(150, 88), (145, 102), (155, 102)])
-
-    pygame.display.flip()
-
-pygame.quit()
-sys.exit()
+            pygame.quit()  # Sulgeme pygame'i
+            sys.exit()     # Väljumine programmist
