@@ -7,7 +7,7 @@ pygame.init()
 LAIUS = 640
 KORGUS = 480
 ekraan = pygame.display.set_mode((LAIUS, KORGUS))
-pygame.display.set_caption("Harjutamine")
+pygame.display.set_caption("Ülesanne 2")
 
 # Pildid
 taust = pygame.image.load("bg_shop.jpg").convert()
