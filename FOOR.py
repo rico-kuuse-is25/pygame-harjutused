@@ -6,7 +6,7 @@ pygame.init()  # Käivitame pygame'i
 screen = pygame.display.set_mode([300, 300])
 
 # Lisame pealkirjaks ülesande nime ja enda nime
-pygame.display.set_caption("Foor - [Sinu Nimi]")
+pygame.display.set_caption("Foor - Rico Kuuse")
 
 # Peamine tsükkel akna hoidmiseks
 while True:

@@ -6,7 +6,7 @@ pygame.init()  # Käivitame pygame'i
 screen = pygame.display.set_mode([300, 300])
 
 # Lisame aknale pealkirja oma nimega
-pygame.display.set_caption("Lumemees - [Sinu Nimi]")
+pygame.display.set_caption("Lumemees - Rico Kuuse")
 
 # Lõpmatu tsükkel, mis hoiab akent lahti
 while True:
