@@ -25,8 +25,8 @@ redCar = pygame.image.load("f1_red.png")     # punane auto (mängija auto)
 blueCar = pygame.image.load("f1_blue.png")   # sinine auto (vastutulev auto)
 
 # Autode suurus
-carW = 50   # auto laius (võid muuta)
-carH = 80   # auto kõrgus (võid muuta)
+carW = 50   # auto laius
+carH = 80   # auto kõrgus
 redCar = pygame.transform.scale(redCar, [carW, carH])
 blueCar = pygame.transform.scale(blueCar, [carW, carH])
 
