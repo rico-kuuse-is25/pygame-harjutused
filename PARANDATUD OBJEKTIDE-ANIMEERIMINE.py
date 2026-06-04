@@ -7,7 +7,7 @@ pygame.init()    # käivitame pygame'i. See rida peab alati kõige alguses olema
 screenX = 640                                         # mänguakna laius pikslites (ülesandes nõutud 640)
 screenY = 480                                         # mänguakna kõrgus pikslites (ülesandes nõutud 480)
 screen = pygame.display.set_mode([screenX, screenY])  # loome akna selle suurusega
-pygame.display.set_caption("Rallimäng")               # akna pealkiri ülaservas
+pygame.display.set_caption("Ülesanne 4")               # akna pealkiri ülaservas
 clock = pygame.time.Clock()                           # kell, millega hoiame ühtlast kiirust (FPS)
 
 
