@@ -2,6 +2,8 @@ import pygame   # laeme sisse pygame teegi, mis on mängu tegemise "mootor"
 
 pygame.init()    # käivitame pygame'i - see rida peab alati kõige alguses olema
 
+import random   # laeme sisse random teegi, millega saame suvalisi arve genereerida
+
 
 # ── Ekraani seaded ────────────────────────────────────────────────────────────────────────────────────────
 screenX = 640                                         # mänguakna laius pikslites (ülesandes nõutud 640)
@@ -31,7 +33,8 @@ padImage = pygame.transform.scale(padImage, [120, 20])     # aluse suurus 120x20
 # Paneme palli Rect-i (ristküliku) sisse, sest siis on lihtne kokkupõrget tuvastada.
 ball = pygame.Rect(0, 0, 20, 20)   # Rect tehakse kujul (x, y, laius, kõrgus)
 ball.centerx = screenX // 2        # pall alustab ekraani keskelt (vasakult-paremalt)
-ball.y = 50                        # pall alustab ülevalt
+ball.x = random.randint(0, screenX)   # pall alustab suvalisest kohast x-teljel
+ball.y = 0   # pall alustab ekraani ülaservast
 
 ballSpeedX = 4   # palli kiirus külgsuunas (suurem number = kiirem pall)
 ballSpeedY = 4   # palli kiirus üles-alla suunas (suurem number = kiirem pall)
