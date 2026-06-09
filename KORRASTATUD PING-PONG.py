@@ -12,7 +12,6 @@ pygame.mixer.music.play()                        # mängime muusikat
 pygame.mixer.music.set_volume(0.2)               # helitugevus 20%
 
 
-
 # ── Ekraani seaded ────────────────────────────────────────────────────────────────────────────────────────
 screenX = 640                                         # mänguakna laius pikslites (ülesandes nõutud 640)
 screenY = 480                                         # mänguakna kõrgus pikslites (ülesandes nõutud 480)
@@ -25,6 +24,7 @@ clock = pygame.time.Clock()                           # kell, millega hoiame üh
 # Värvid on RGB kujul: [punane, roheline, sinine], iga number 0-255.
 lBlue = [153, 204, 255]   # hele sinine - mängu taustavärv (SIIT saad tausta värvi muuta)
 black = [0, 0, 0]         # must - skoori teksti värv
+white = [255, 255, 255]   # valge - mängu lõpu teksti värv
 
 
 # ── Piltide laadimine ─────────────────────────────────────────────────────────────────────────────────────
@@ -92,15 +92,13 @@ while not gameover:
         gameover = True
 
     # ── Aluse liigutamine ───────────────────────────────────────────────────────────────────────────────
-    # KUSTUTA vana automaatne liikumine
-
-    # ASENDA klaviatuurijuhtimisega:
+    # Alust juhitakse klaviatuuri vasak/parem nooltega.
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT]:
-        if pad.left > 0:
+        if pad.left > 0:               # ei lase alusel vasakust servast välja minna
             pad.x -= padSpeed
     if keys[pygame.K_RIGHT]:
-        if pad.right < screenX:
+        if pad.right < screenX:        # ei lase alusel paremast servast välja minna
             pad.x += padSpeed
 
     # ── Kokkupõrge palli ja aluse vahel ─────────────────────────────────────────────────────────────────
@@ -124,4 +122,40 @@ while not gameover:
 
     pygame.display.flip()          # näitame kõik joonistatu ekraanil
 
-pygame.quit()   # kui mäng lõpeb, sulgeme pygame'i
+
+# ── Mängu lõpu ekraan ─────────────────────────────────────────────────────────────────────────────────────
+# Kui jõuame siia, siis mäng on läbi. Näitame kasutajasõbralikku lõpuekraani.
+bigFont = pygame.font.SysFont("Arial", 48, bold=True)   # suurem font pealkirja jaoks
+
+# Poolläbipaistev tume kiht, et tekst oleks mängupildi peal selgelt loetav.
+overlay = pygame.Surface([screenX, screenY])
+overlay.set_alpha(180)        # läbipaistvus: 0 = nähtamatu, 255 = täiesti tume
+overlay.fill(black)
+
+showGameover = True
+while showGameover:
+    clock.tick(60)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:        # akna sulgemine ristist
+            showGameover = False
+        if event.type == pygame.KEYDOWN:     # suvalise klahvi vajutamine
+            showGameover = False
+
+    screen.blit(overlay, [0, 0])             # joonistame tumeda kihi mängupildi peale
+
+    # "Mäng läbi!" tekst keskele
+    overText = bigFont.render("Mäng läbi!", True, white)
+    screen.blit(overText, [screenX // 2 - overText.get_width() // 2, 150])
+
+    # Lõppskoor
+    scoreText = font.render("Sinu skoor: " + str(score), True, white)
+    screen.blit(scoreText, [screenX // 2 - scoreText.get_width() // 2, 230])
+
+    # Juhend väljumiseks
+    infoText = font.render("Vajuta suvalist klahvi, et väljuda", True, white)
+    screen.blit(infoText, [screenX // 2 - infoText.get_width() // 2, 290])
+
+    pygame.display.flip()
+
+pygame.quit()   # kui kasutaja väljub, sulgeme pygame'i
