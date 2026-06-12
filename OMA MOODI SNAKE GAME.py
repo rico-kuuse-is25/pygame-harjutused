@@ -1,6 +1,6 @@
 """
 SNAKE - Omamoodi Mäng
-PAP2022 - Kombineeritud näidismängudest 1, 2 ja 3
+Kombineeritud näidismängudest 1, 2 ja 3
 """
 
 # ══════════════════════════════════════════════════════════════════════════════
