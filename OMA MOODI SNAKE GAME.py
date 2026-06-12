@@ -984,7 +984,7 @@ def levelup_screen(surf, game, highscore, next_lv):
     lines = [
         ("TASE ÜLES!", 0, C_GOLD_UI),
         (f"Järgmine: {next_lv['name']}", 1, C_ACCENT),
-        ("Kaart kasvab ja kiirus tõuseb", 2, C_TEXT),
+        ("Kiirus tõuseb", 2, C_TEXT),
     ]
     draw_overlay(surf, lines, alpha=150)
     play(SND_LEVELUP)      # taseme tõusu heli (pygame.mixer.Sound)
